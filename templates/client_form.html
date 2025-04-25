@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Edit' if client else 'Register' }} Client - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{ 'Edit' if client else 'Register New' }} Client</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="first_name" class="form-label">First Name*</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required
+                        value="{{ client.first_name if client else '' }}">
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="last_name" class="form-label">Last Name*</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required
+                        value="{{ client.last_name if client else '' }}">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="date_of_birth" class="form-label">Date of Birth*</label>
+                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required
+                        value="{{ client.date_of_birth if client else '' }}">
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="gender" class="form-label">Gender*</label>
+                    <select class="form-select" id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male" {{ 'selected' if client and client.gender == 'Male' else '' }}>Male</option>
+                        <option value="Female" {{ 'selected' if client and client.gender == 'Female' else '' }}>Female</option>
+                        <option value="Other" {{ 'selected' if client and client.gender == 'Other' else '' }}>Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone"
+                    value="{{ client.phone if client else '' }}">
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email"
+                    value="{{ client.email if client else '' }}">
+            </div>
+            
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" rows="2">{{ client.address if client else '' }}</textarea>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('web.clients') }}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">{{ 'Update' if client else 'Register' }} Client</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

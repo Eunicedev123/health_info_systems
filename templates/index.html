@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Health Information System</h1>
+    <p class="lead">A simple system for managing health programs and client registrations.</p>
+    <hr class="my-4">
+    <p>Use this system to register clients, create health programs, and manage enrollments.</p>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Client Management</h5>
+                    <p class="card-text">Register new clients and manage their health program enrollments.</p>
+                    <a href="{{ url_for('web.clients') }}" class="btn btn-primary">Manage Clients</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Program Management</h5>
+                    <p class="card-text">Create and manage health programs like TB, Malaria, HIV, etc.</p>
+                    <a href="{{ url_for('web.programs') }}" class="btn btn-primary">Manage Programs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">API Access</h5>
+                    <p class="card-text">The system provides API endpoints for integration with other systems.</p>
+                    <p>API Base URL: <code>/api</code></p>
+                    <p>Available endpoints:</p>
+                    <ul>
+                        <li><code>/api/clients</code> - Client management</li>
+                        <li><code>/api/programs</code> - Program management</li>
+                        <li><code>/api/clients/{id}/programs</code> - Client program enrollments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

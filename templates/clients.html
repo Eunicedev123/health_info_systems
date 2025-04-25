@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Clients - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Clients</h1>
+    <a href="{{ url_for('web.add_client') }}" class="btn btn-success">Register New Client</a>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" action="{{ url_for('web.clients') }}" class="row g-3">
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="search" name="search" 
+                    placeholder="Search by client name" value="{{ search_term }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if clients %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th>Programs</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.first_name }} {{ client.last_name }}</td>
+                    <td>{{ client.gender }}</td>
+                    <td>{{ client.date_of_birth }}</td>
+                    <td>{{ client.programs|length }}</td>
+                    <td>
+                        <a href="{{ url_for('web.client_details', client_id=client.id) }}" class="btn btn-sm btn-info">View</a>
+                        <a href="{{ url_for('web.edit_client', client_id=client.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    {% if search_term %}
+        <div class="alert alert-warning">No clients found matching "{{ search_term }}".</div>
+    {% else %}
+        <div class="alert alert-info">No clients have been registered yet.</div>
+        <p>Click the "Register New Client" button to add your first client.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

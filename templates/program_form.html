@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Edit' if program else 'Add' }} Program - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{ 'Edit' if program else 'Add New' }} Health Program</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Program Name*</label>
+                <input type="text" class="form-control" id="name" name="name" required 
+                    value="{{ program.name if program else '' }}">
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ program.description if program else '' }}</textarea>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="start_date" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date"
+                        value="{{ program.start_date if program and program.start_date else '' }}">
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="end_date" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date"
+                        value="{{ program.end_date if program and program.end_date else '' }}">
+                </div>
+            </div>
+            
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="active" name="active"
+                    {{ 'checked' if not program or program.active else '' }}>
+                <label class="form-check-label" for="active">Active</label>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('web.programs') }}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">{{ 'Update' if program else 'Create' }} Program</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
