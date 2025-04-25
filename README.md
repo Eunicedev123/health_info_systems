@@ -11,6 +11,32 @@ A comprehensive web application for managing healthcare clients and programs. Th
 - **RESTful API**: Access client and program data programmatically
 - **Secure Authentication**: API endpoints protected with JWT authentication
 
+## Demo Screenshots
+
+### Homepage Dashboard
+![Homepage Dashboard](static/images/homepage.png)
+*The main dashboard provides quick access to all system features and displays summary information.*
+
+### Clients Management
+![Clients Page](static/images/clients%20page.png)
+*View and search for all registered clients in the system.*
+
+### Client Registration
+![Register Client](static/images/register%20client.png)
+*Form for registering new clients with personal information.*
+
+### Client Profile
+![Client Profile](static/images/client%20profile.png)
+*Detailed client profile showing personal information and program enrollments.*
+
+### Program Management
+![Program Management](static/images/program.png)
+*Create and manage health programs with detailed information.*
+
+### API Documentation
+![API Documentation](static/images/api%20documentation%20.png)
+*The system provides comprehensive API endpoints for integration with other systems.*
+
 ## Technology Stack
 
 - **Backend**: Python, Flask
